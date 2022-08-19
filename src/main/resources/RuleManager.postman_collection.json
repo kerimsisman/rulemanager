@@ -1,0 +1,544 @@
+{
+	"info": {
+		"_postman_id": "a32bea5e-125a-4ddd-9eb5-a48f7facf0fb",
+		"name": "RuleManager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1338082"
+	},
+	"item": [
+		{
+			"name": "parameters",
+			"item": [
+				{
+					"name": "comparisons",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/parameters/comparisons",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"parameters",
+								"comparisons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/parameters/keys",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"parameters",
+								"keys"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/parameters/keys/id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"parameters",
+								"keys",
+								"id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"key\":\"100K_UZERI_VADELI_HESABI\",\r\n    \"name\": \"100K_ üzeri vadeli hesabı var mı?\",\r\n    \"description\": \"Vadeli hesabı açalı kaç gün oldu?\",\r\n    \"valueType\": \"java.lang.Boolean\",\r\n    \"service\": true,\r\n    \"serviceMethod\":\"accountExists('VADELI',null,null,null,100000)\",\r\n    \"factName\":\"fact\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/parameters/keys",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"parameters",
+								"keys"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"key\": \"VADELI_HESAP_ERKEN_KAPNIYOR\",\r\n    \"name\": \"Vadeli hesap erken mi kapanıyor?\",\r\n    \"description\": \"\",\r\n    \"valueType\": \"java.lang.Boolean\",\r\n    \"service\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/parameters/keys/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"parameters",
+								"keys",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"key\": \"VADELI_HESAP_ERKEN_KAPNIYOR\",\r\n    \"name\": \"Vadeli hesap erken mi kapanıyor?\",\r\n    \"description\": \"\",\r\n    \"valueType\": \"java.lang.Boolean\",\r\n    \"service\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/parameters/keys/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"parameters",
+								"keys",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "rules",
+			"item": [
+				{
+					"name": "execute_VADELI_HESAP_KAPAMA",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"mbb\":\"12001\",\r\n   \"keyValueList\":[{\r\n            \"key\":\"VADELI_HESAP_ERKEN_KAPNIYOR\",\r\n            \"value\":\"true\"\r\n        },\r\n        {\r\n            \"key\":\"VADELI_HESAP_YASI\",\r\n            \"value\":\"35\"\r\n        }\r\n    ],\r\n    \"accountInfoList\":[\r\n        {   \"id\":1,\r\n            \"accountType\":\"VADELI\",\r\n            \"amount\":\"100000\",\r\n            \"expirtyDate\":\"2018-12-10T13:49:51.141Z\"\r\n\r\n        },\r\n         {   \"id\":2,\r\n            \"accountType\":\"VADESIZ\",\r\n            \"amount\":\"900000\",\r\n            \"expirtyDate\":\"2018-12-10T13:49:51.141Z\"\r\n\r\n        }\r\n\r\n\r\n    ]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/execute/VADELI_HESAP_KAPAMA",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"execute",
+								"VADELI_HESAP_KAPAMA"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "execute_BASVURU",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"mbb\":\"1000088\",\r\n   \"keyValueList\":[{\r\n            \"key\":\"KAMPANYA_FAIZI_GORUNUYOR_MU\",\r\n            \"value\":\"false\"\r\n        },\r\n        {\r\n            \"key\":\"MEVCUT_FAIZ_ORANI\",\r\n            \"value\":\"16\"\r\n        }\r\n        ,\r\n        {\r\n            \"key\":\"MUSTERI_TIPI\",\r\n            \"value\":\"OZEL\"\r\n        }\r\n        \r\n    ],\r\n    \"accountInfoList\":[\r\n        {   \"id\":1,\r\n            \"currency\":\"TL\",\r\n            \"accountType\":\"VADELI\",\r\n            \"amount\":\"120\",\r\n            \"expirtyDate\":\"2022-08-19T13:49:51.141Z\"\r\n\r\n        },\r\n         {   \"id\":2,\r\n            \"currency\":\"TL\",\r\n            \"accountType\":\"VADELI\",\r\n            \"amount\":\"80\",\r\n            \"expirtyDate\":\"2022-08-19T13:49:51.141Z\"\r\n\r\n        }\r\n        ,\r\n         {   \"id\":30,\r\n            \"currency\":\"TL\",\r\n            \"accountType\":\"VADESIZ\",\r\n            \"amount\":\"900000\",\r\n            \"expirtyDate\":\"2018-12-10T13:49:51.141Z\"\r\n        }\r\n    ]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/execute/BASVURU",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"execute",
+								"BASVURU"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "execute_EFT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"mbb\":\"12001\",\r\n   \"keyValueList\":[{\r\n            \"key\":\"KAMPANYA_FAIZI_GORUNUYOR_MU\",\r\n            \"value\":\"false\"\r\n        }\r\n    ],\r\n    \"accountInfoList\":[\r\n        {   \"id\":1,\r\n            \"accountType\":\"VADELI\",\r\n            \"amount\":\"100000\",\r\n            \"expirtyDate\":\"2022-08-13T13:49:51.141Z\"\r\n\r\n        },\r\n           {   \"id\":2,\r\n            \"accountType\":\"VADELI\",\r\n            \"amount\":\"5000\",\r\n            \"expirtyDate\":\"2022-08-12T13:49:51.141Z\"\r\n\r\n        }\r\n    ]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/execute/EFT",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"execute",
+								"EFT"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "execute_KART_BASVURU",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"mbb\":\"12001\",\r\n   \"keyValueList\":[{\r\n            \"key\":\"KAMPANYA_FAIZI_GORUNUYOR_MU\",\r\n            \"value\":\"false\"\r\n        }\r\n    ],\r\n    \"accountInfoList\":[\r\n        {   \"id\":1,\r\n            \"accountType\":\"VADELI\",\r\n            \"amount\":\"100000\",\r\n            \"expirtyDate\":\"2022-08-13T13:49:51.141Z\"\r\n\r\n        },\r\n           {   \"id\":2,\r\n            \"accountType\":\"VADELI\",\r\n            \"amount\":\"5000\",\r\n            \"expirtyDate\":\"2022-08-12T13:49:51.141Z\"\r\n\r\n        }\r\n    ]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/execute/EFT",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"execute",
+								"EFT"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAsMvel",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"mbb\":\"12001\",\r\n   \"keyValueList\":[{\r\n            \"key\":\"KAMPANYA_FAIZI_GORUNUYOR_MU\",\r\n            \"value\":\"false\"\r\n        }\r\n    ],\r\n    \"accountInfoList\":[\r\n        {   \"id\":1,\r\n            \"accountType\":\"VADELI\",\r\n            \"amount\":\"100000\",\r\n            \"expirtyDate\":\"2022-08-13T13:49:51.141Z\"\r\n\r\n        },\r\n           {   \"id\":2,\r\n            \"accountType\":\"VADELI\",\r\n            \"amount\":\"5000\",\r\n            \"expirtyDate\":\"2022-08-12T13:49:51.141Z\"\r\n\r\n        }\r\n    ]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/actions/EFT",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actions",
+								"EFT"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/actions/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/actions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/actions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Vadeli hesap kapama\",\r\n    \"code\": \"VADELI_HESAP_KAPAMA\",\r\n    \"description\": \"Vadeli hesap kapama islemi kurallari.\",\r\n    \"rules\": [\r\n        {\r\n            \"id\": 1,\r\n            \"order\": 0,\r\n            \"conditions\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"order\": 0,\r\n                    \"conditionDetails\": [\r\n                        {\r\n                            \"id\": 1,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"KAPATILAN_VADELI_HESAP_TUTARI\",\r\n                            \"comparisonType\": \"EQUAL\",\r\n                            \"value\": \"1000\",\r\n                            \"input\": null\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"id\": 2,\r\n                    \"order\": 0,\r\n                    \"conditionDetails\": [\r\n                        {\r\n                            \"id\": 2,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"MEVCUT_FAIZ_ORANI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"16\",\r\n                            \"input\": null\r\n                        },\r\n                        {\r\n                            \"id\": 3,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"ONERI_GOSTERME_SIKLIGI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"1\",\r\n                            \"input\": \"30\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"id\": 2,\r\n                    \"order\": 0,\r\n                    \"conditionDetails\": [\r\n                        {\r\n                            \"id\": 2,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"MEVCUT_FAIZ_ORANI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"16\",\r\n                            \"input\": null\r\n                        },\r\n                        {\r\n                            \"id\": 3,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"ONERI_GOSTERME_SIKLIGI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"1\",\r\n                            \"input\": \"30\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"id\": 1,\r\n            \"order\": 0,\r\n            \"conditions\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"order\": 0,\r\n                    \"conditionDetails\": [\r\n                        {\r\n                            \"id\": 1,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"KAPATILAN_VADELI_HESAP_TUTARI\",\r\n                            \"comparisonType\": \"EQUAL\",\r\n                            \"value\": \"1000\",\r\n                            \"input\": null\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"id\": 2,\r\n                    \"order\": 0,\r\n                    \"conditionDetails\": [\r\n                        {\r\n                            \"id\": 2,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"MEVCUT_FAIZ_ORANI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"16\",\r\n                            \"input\": null\r\n                        },\r\n                        {\r\n                            \"id\": 3,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"ONERI_GOSTERME_SIKLIGI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"1\",\r\n                            \"input\": \"30\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"id\": 2,\r\n                    \"order\": 0,\r\n                    \"conditionDetails\": [\r\n                        {\r\n                            \"id\": 2,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"MEVCUT_FAIZ_ORANI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"16\",\r\n                            \"input\": null\r\n                        },\r\n                        {\r\n                            \"id\": 3,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"ONERI_GOSTERME_SIKLIGI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"1\",\r\n                            \"input\": \"30\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"id\": 1,\r\n            \"order\": 0,\r\n            \"conditions\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"order\": 0,\r\n                    \"conditionDetails\": [\r\n                        {\r\n                            \"id\": 1,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"KAPATILAN_VADELI_HESAP_TUTARI\",\r\n                            \"comparisonType\": \"EQUAL\",\r\n                            \"value\": \"1000\",\r\n                            \"input\": null\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"id\": 2,\r\n                    \"order\": 0,\r\n                    \"conditionDetails\": [\r\n                        {\r\n                            \"id\": 2,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"MEVCUT_FAIZ_ORANI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"16\",\r\n                            \"input\": null\r\n                        },\r\n                        {\r\n                            \"id\": 3,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"ONERI_GOSTERME_SIKLIGI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"1\",\r\n                            \"input\": \"30\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"id\": 2,\r\n                    \"order\": 0,\r\n                    \"conditionDetails\": [\r\n                        {\r\n                            \"id\": 2,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"MEVCUT_FAIZ_ORANI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"16\",\r\n                            \"input\": null\r\n                        },\r\n                        {\r\n                            \"id\": 3,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"ONERI_GOSTERME_SIKLIGI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"1\",\r\n                            \"input\": \"30\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/actions/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Vadeli hesap kapama\",\r\n    \"code\": \"VADELI_HESAP_KAPAMA\",\r\n    \"description\": \"Vadeli hesap kapama islemi kurallari.\",\r\n    \"rules\": [\r\n        {\r\n            \"id\": 1,\r\n            \"order\": 0,\r\n            \"conditions\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"order\": 0,\r\n                    \"conditionDetails\": [\r\n                        {\r\n                            \"id\": 1,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"KAPATILAN_VADELI_HESAP_TUTARI\",\r\n                            \"comparisonType\": \"EQUAL\",\r\n                            \"value\": \"1000\",\r\n                            \"input\": null\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"id\": 2,\r\n                    \"order\": 0,\r\n                    \"conditionDetails\": [\r\n                        {\r\n                            \"id\": 2,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"MEVCUT_FAIZ_ORANI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"16\",\r\n                            \"input\": null\r\n                        },\r\n                        {\r\n                            \"id\": 3,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"ONERI_GOSTERME_SIKLIGI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"1\",\r\n                            \"input\": \"30\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"id\": 2,\r\n                    \"order\": 0,\r\n                    \"conditionDetails\": [\r\n                        {\r\n                            \"id\": 2,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"MEVCUT_FAIZ_ORANI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"16\",\r\n                            \"input\": null\r\n                        },\r\n                        {\r\n                            \"id\": 3,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"ONERI_GOSTERME_SIKLIGI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"1\",\r\n                            \"input\": \"30\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"id\": 1,\r\n            \"order\": 0,\r\n            \"conditions\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"order\": 0,\r\n                    \"conditionDetails\": [\r\n                        {\r\n                            \"id\": 1,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"KAPATILAN_VADELI_HESAP_TUTARI\",\r\n                            \"comparisonType\": \"EQUAL\",\r\n                            \"value\": \"1000\",\r\n                            \"input\": null\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"id\": 2,\r\n                    \"order\": 0,\r\n                    \"conditionDetails\": [\r\n                        {\r\n                            \"id\": 2,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"MEVCUT_FAIZ_ORANI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"16\",\r\n                            \"input\": null\r\n                        },\r\n                        {\r\n                            \"id\": 3,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"ONERI_GOSTERME_SIKLIGI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"1\",\r\n                            \"input\": \"30\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"id\": 2,\r\n                    \"order\": 0,\r\n                    \"conditionDetails\": [\r\n                        {\r\n                            \"id\": 2,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"MEVCUT_FAIZ_ORANI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"16\",\r\n                            \"input\": null\r\n                        },\r\n                        {\r\n                            \"id\": 3,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"ONERI_GOSTERME_SIKLIGI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"1\",\r\n                            \"input\": \"30\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"id\": 1,\r\n            \"order\": 0,\r\n            \"conditions\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"order\": 0,\r\n                    \"conditionDetails\": [\r\n                        {\r\n                            \"id\": 1,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"KAPATILAN_VADELI_HESAP_TUTARI\",\r\n                            \"comparisonType\": \"EQUAL\",\r\n                            \"value\": \"1000\",\r\n                            \"input\": null\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"id\": 2,\r\n                    \"order\": 0,\r\n                    \"conditionDetails\": [\r\n                        {\r\n                            \"id\": 2,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"MEVCUT_FAIZ_ORANI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"16\",\r\n                            \"input\": null\r\n                        },\r\n                        {\r\n                            \"id\": 3,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"ONERI_GOSTERME_SIKLIGI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"1\",\r\n                            \"input\": \"30\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"id\": 2,\r\n                    \"order\": 0,\r\n                    \"conditionDetails\": [\r\n                        {\r\n                            \"id\": 2,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"MEVCUT_FAIZ_ORANI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"16\",\r\n                            \"input\": null\r\n                        },\r\n                        {\r\n                            \"id\": 3,\r\n                            \"order\": 0,\r\n                            \"conditionType\": \"ONERI_GOSTERME_SIKLIGI\",\r\n                            \"comparisonType\": \"GREATER\",\r\n                            \"value\": \"1\",\r\n                            \"input\": \"30\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/actions/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actions",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "configuration",
+			"item": [
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\":\"RULE_MANAGER_STATUS\",\r\n    \"value\": \"PASSIVE\",\r\n    \"description\": \"show rule manager status\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/configurations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"configurations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/configurations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"configurations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"id\": 64,\r\n        \"key\": \"RULE_MANAGER_STATUS\",\r\n        \"value\": \"PASSIVE\",\r\n        \"description\": \"show rule manager status\"\r\n    }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/configurations/64",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"configurations",
+								"64"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":63,\r\n    \"key\":\"RULE_MANAGER_STATUS\",\r\n    \"value\": \"ACTIVE\",\r\n    \"description\": \"show rule manager status\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/configurations/63",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"configurations",
+								"63"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
